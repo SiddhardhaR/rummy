@@ -17,6 +17,7 @@ export default function GamePage() {
 }
 
 function GameClient() {
+  // Client-side component to handle game logic and real-time updates
   const router = useRouter();
   const searchParams = useSearchParams();
   const gameCode = String(searchParams.get("gameId") || "").toUpperCase();
