@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "rummy-91870",
     "source": ".",
     "ignore": [
       "firebase.json",

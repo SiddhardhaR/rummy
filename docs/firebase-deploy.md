@@ -4,7 +4,7 @@ This repository is configured to deploy the Next.js app to Firebase Hosting when
 
 Required GitHub repository secrets:
 
-- `FIREBASE_SERVICE_ACCOUNT_RUMMY`: JSON service account key for the Firebase project `rummy`.
+- `FIREBASE_SERVICE_ACCOUNT_RUMMY`: JSON service account key for the Firebase project `rummy-91870`.
 - `NEXT_PUBLIC_SUPABASE_URL`: Supabase project URL used by the frontend.
 - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabase anon key used by the frontend.
 - `NEXT_PUBLIC_SOCKET_URL`: Public URL for the Socket.IO game server.
