@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background: #120f0d;
+  color: #18211f;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.table-felt {
+  background:
+    radial-gradient(circle at 50% 48%, rgba(214, 168, 79, 0.2), transparent 18rem),
+    radial-gradient(circle at 18% 16%, rgba(255,255,255,0.16), transparent 20rem),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.025) 0 2px, transparent 2px 10px),
+    linear-gradient(135deg, #104a37, #082d25 58%, #17110d);
+}
+
+.table-felt::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(214,168,79,0.18), transparent 16%, transparent 84%, rgba(214,168,79,0.18)),
+    linear-gradient(0deg, rgba(0,0,0,0.28), transparent 22%, transparent 78%, rgba(0,0,0,0.35));
+}
