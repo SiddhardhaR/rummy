@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useParams, useRouter } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import GameLobby from "@/components/GameLobby";
 import GameTable from "@/components/GameTable";
 import { getCurrentUser } from "@/lib/auth";
@@ -9,9 +9,17 @@ import { upsertUserProfile } from "@/lib/db";
 import { getSocket } from "@/lib/socket";
 
 export default function GamePage() {
+  return (
+    <Suspense fallback={<LoadingMessage />}>
+      <GameClient />
+    </Suspense>
+  );
+}
+
+function GameClient() {
   const router = useRouter();
-  const params = useParams();
-  const gameCode = String(params.gameId || "").toUpperCase();
+  const searchParams = useSearchParams();
+  const gameCode = String(searchParams.get("gameId") || "").toUpperCase();
   const [user, setUser] = useState(null);
   const [game, setGame] = useState(null);
   const [error, setError] = useState("");
@@ -58,8 +66,12 @@ export default function GamePage() {
     });
   }
 
+  if (!gameCode) {
+    return <main className="grid min-h-screen place-items-center bg-[#f6f3ec] text-ink">Missing game code.</main>;
+  }
+
   if (!user || !game) {
-    return <main className="grid min-h-screen place-items-center bg-[#f6f3ec] text-ink">Joining game...</main>;
+    return <LoadingMessage />;
   }
 
   if (game.status === "waiting") {
@@ -85,6 +97,10 @@ export default function GamePage() {
       onNextHand={() => emit("next_hand")}
     />
   );
+}
+
+function LoadingMessage() {
+  return <main className="grid min-h-screen place-items-center bg-[#f6f3ec] text-ink">Joining game...</main>;
 }
 
 function userPayload(user) {

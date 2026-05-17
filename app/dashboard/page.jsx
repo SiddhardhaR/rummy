@@ -33,10 +33,10 @@ export default function DashboardPage() {
     socket.connect();
 
     socket.on("game_created", ({ gameCode: createdCode }) => {
-      router.push(`/game/${createdCode}`);
+      router.push(`/game?gameId=${createdCode}`);
     });
     socket.on("joined_game", ({ gameCode: joinedCode }) => {
-      router.push(`/game/${joinedCode}`);
+      router.push(`/game?gameId=${joinedCode}`);
     });
     socket.on("error_message", (message) => setError(message));
 
